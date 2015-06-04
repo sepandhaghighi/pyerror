@@ -7,6 +7,8 @@ def convert_gen(error_object):
         return error_detect(parity_gen(error_object),error_object.code,error_object.flag)
     elif error_object.code=="Repeat":
         return error_detect(repeat_gen(error_object),error_object.code,error_object.flag)
+    elif error_object.code=="Hamming":
+        return error_detect(hamming_gen(error_object),error_object.code,error_object.flag)
 def convert_det(error_object):
     '''
     Convert_det(error_object)-< Boolean
@@ -15,6 +17,8 @@ def convert_det(error_object):
         return parity_det(error_object)
     elif error_object.code=="Repeat":
         return repeat_det(error_object)
+    elif error_object.code=="Hamming":
+        return hamming_det(error_object)
         
 class error_detect:
  
