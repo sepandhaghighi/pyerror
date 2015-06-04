@@ -3,22 +3,33 @@ def convert_gen(error_object):
     '''
     Convert_gen(error_object) -> error_object
 '''
+    mode=None
     if error_object.code=="Parity":
-        return error_detect(parity_gen(error_object),error_object.code,error_object.flag)
+        mode=parity_gen(error_object)
     elif error_object.code=="Repeat":
-        return error_detect(repeat_gen(error_object),error_object.code,error_object.flag)
+        mode=repeat_gen(error_object)
     elif error_object.code=="Hamming":
-        return error_detect(hamming_gen(error_object),error_object.code,error_object.flag)
+        mode=hamming_gen(error_object)
+    elif error_object.code=="Checksum":
+        mode=checksum_gen(error_object)
+    
+    return error_detect(mode,error_object.code,error_object.flag)
+    
 def convert_det(error_object):
     '''
     Convert_det(error_object)-< Boolean
 '''
+    result=None
     if error_object.code=="Parity":
-        return parity_det(error_object)
+        result=parity_det(error_object)
     elif error_object.code=="Repeat":
-        return repeat_det(error_object)
+        result=repeat_det(error_object)
     elif error_object.code=="Hamming":
-        return hamming_det(error_object)
+        result=hamming_det(error_object)
+    elif error_object.code=="Checksum":
+        result=checksum_det(error_object)
+    return result
+        
         
 class error_detect:
  
@@ -34,10 +45,39 @@ class error_detect:
     def __getitem__(self,i):
         return self.str[i]
     def __len__(self):
-        return len(self.str)    
-        
+        return len(self.str)
+    def __add__(self,other):
+        try:
+            if type(other)==str:
+                return error_detect(self.str+other,self.code,self.flag)
+            
+            elif self.code==other.code and self.flag==other.flag:
+                return error_detect(self.str+other.str,self.code,self.flag)
+            else:
+                print("Code And Flag Of This 2 Object Are Defferent")
+        except:
+            print("Bad Input")
+    def __mul__(self,other):
+        try:
+            if type(other)==int or type(other)==float:
+                return error_detect((self.str)*2,self.code,self.flag)
+            else:
+                print("Bad Input")
+        except:
+            print("Bad Input")
+    def __equal__(self,other):
+        try:
+            if self.str==other.str and self.code==other.code and self.flag==other.flag:
+                return True
+            else:
+                return False
+        except:
+            print("Bad Input")
+                
+            
     def __str__(self):
 
-        return ("Error_Detection("+self.str+","+str(self.code)+","+str(self.flag)+")")
-    
+        return ("Error_Object("+self.str+","+str(self.code)+","+str(self.flag)+")")
+    def __repr__(self):
+        return ("E_Object("+"Message: "+self.str+" ,"+"Method: "+str(self.code)+" ,"+"Flag: "+str(self.flag)+")") 
 

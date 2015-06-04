@@ -1,5 +1,6 @@
 from operator import *
 from math import*
+hex_dict={"0":0,"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"A":10,"B":11,"C":12,"D":13,"E":14,"F":15,'a':10,'b':11,'c':12,'d':13,'e':14,'f':15}
 # Error Check And Correction Functions In Python
 def parity_gen(error_object):
         '''
@@ -106,27 +107,25 @@ def hamming_det(error_object):
                 if ((i+1) in p16) and (i+1)<(length) and number_parity>=5 :
                         parity_value[4]=xor(int(error_object[i+1]),int(parity_value[4]))
         return parity_value
-
+def checksum_gen(error_object):
+        length=len(error_object)
+        temp=0
+        for i in error_object.str:
+                temp=temp+hex_dict[i]
+        temp=hex(temp)
+        temp=temp[2:]
+        final_string=error_object.str+temp
+        return final_string
         
-        
-                        
-                        
-                        
-                
-                                
-                
-                
-                
-                
-                
-                
-        
-         
-                
-                        
-                
-        
-               
-        
-
+def checksum_det(error_object):
+        checksum=error_object[-2:]
+        temp=0
+        for i in error_object.str[:-2]:
+                temp=temp+hex_dict[i]
+        temp=hex(temp)
+        temp=temp[2:]
+        if temp==checksum:
+                return True
+        else:
+                return False
         
