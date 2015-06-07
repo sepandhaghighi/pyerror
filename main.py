@@ -4,8 +4,10 @@ def convert_gen(error_object):
     Convert_gen(error_object) -> error_object
 '''
     mode=None
-    if error_object.code=="Parity":
-        mode=parity_gen(error_object)
+    if error_object.code=="Parity-Even":
+        mode=parity_even_gen(error_object)
+    elif error_object.code=="Parity-Odd":
+        mode=parity_odd_gen(error_object)
     elif error_object.code=="Repeat":
         mode=repeat_gen(error_object)
     elif error_object.code=="Hamming":
@@ -22,8 +24,10 @@ def convert_det(error_object):
     Convert_det(error_object)-< Boolean
 '''
     result=None
-    if error_object.code=="Parity":
-        result=parity_det(error_object)
+    if error_object.code=="Parity-Even":
+        result=parity_even_det(error_object)
+    elif error_object.code=="Parity-Odd":
+        result=parity_odd_det(error_object)
     elif error_object.code=="Repeat":
         result=repeat_det(error_object)
     elif error_object.code=="Hamming":

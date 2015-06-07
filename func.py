@@ -14,7 +14,7 @@ def hex_2_bin(hex_input):
                 return None
 
 # Error Check And Correction Functions In Python
-def parity_gen(error_object):
+def parity_even_gen(error_object):
         '''
 parity_gen(error_object)-> String
 '''
@@ -24,7 +24,7 @@ parity_gen(error_object)-> String
             temp=xor(int(error_object[i]),temp)
         output=error_object.str+str(temp)
         return output
-def parity_det(error_object):
+def parity_even_det(error_object):
         '''
 parity_det(error_object)-> Boolean
 '''
@@ -32,10 +32,27 @@ parity_det(error_object)-> Boolean
         length=len(error_object)
         for i in range(length-1):
             temp=xor(int(error_object[i]),temp)
-        if str(temp)==error_object[-1]:
+        if xor(teme,int(error_object[-1]))==0:
                 return True
         else:
                 return False
+def parity_odd_gen(error_object):
+        temp=0
+        length=len(error_object)
+        for i in range(length):
+                temp=xor(int(error_object[i]),temp)
+        result=error_object.str+str(int(not(temp)))
+        return result
+def parity_odd_det(error_object):
+        temp=0
+        length=len(error_object)-1
+        for i in range(length):
+                temp=xor(temp,int(error_object[i]))
+        if xor(temp,int(error_object[-1]))==1:
+                return True
+        else:
+                return False
+        
 def repeat_gen(error_object):
         '''
 repeat_gen(error_object) -> String
