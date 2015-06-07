@@ -12,6 +12,8 @@ def convert_gen(error_object):
         mode=hamming_gen(error_object)
     elif error_object.code=="Checksum":
         mode=checksum_gen(error_object)
+    elif error_object.code=="CRC3":
+        mode=crc_gen(error_object,poly_vector[0])
     
     return error_detect(mode,error_object.code,error_object.flag)
     
@@ -28,6 +30,8 @@ def convert_det(error_object):
         result=hamming_det(error_object)
     elif error_object.code=="Checksum":
         result=checksum_det(error_object)
+    elif error_object.code=="CRC3":
+        result=crc_det(error_object,poly_vec[0])
     return result
         
         
