@@ -18,61 +18,86 @@ def parity_even_gen(error_object):
         '''
 parity_gen(error_object)-> String
 '''
-        temp=0
-        length=len(error_object)
-        for i in range(length):
-            temp=xor(int(error_object[i]),temp)
-        output=error_object.str+str(temp)
-        return output
+        try:
+                temp=0
+                length=len(error_object)
+                for i in range(length):
+                    temp=xor(int(error_object[i]),temp)
+                output=error_object.str+str(temp)
+                return output
+        except:
+                print("Error In Generating Even Parity")
+                return None
 def parity_even_det(error_object):
         '''
 parity_det(error_object)-> Boolean
 '''
-        temp=0
-        length=len(error_object)
-        for i in range(length-1):
-            temp=xor(int(error_object[i]),temp)
-        if xor(teme,int(error_object[-1]))==0:
-                return True
-        else:
-                return False
+        try:
+                temp=0
+                length=len(error_object)
+                for i in range(length-1):
+                    temp=xor(int(error_object[i]),temp)
+               if xor(teme,int(error_object[-1]))==0:
+                        return True
+                else:
+                        return False
+        except:
+                print("Error In Detecting Even Parity")
+                return None
 def parity_odd_gen(error_object):
-        temp=0
-        length=len(error_object)
-        for i in range(length):
-                temp=xor(int(error_object[i]),temp)
-        result=error_object.str+str(int(not(temp)))
-        return result
+
+        try:
+                temp=0
+                length=len(error_object)
+                for i in range(length):
+                        temp=xor(int(error_object[i]),temp)
+                result=error_object.str+str(int(not(temp)))
+                return result
+        except:
+                print("Error In Generating Odd parity")
+                return None
 def parity_odd_det(error_object):
-        temp=0
-        length=len(error_object)-1
-        for i in range(length):
-                temp=xor(temp,int(error_object[i]))
-        if xor(temp,int(error_object[-1]))==1:
-                return True
-        else:
-                return False
+        try:
+                temp=0
+                length=len(error_object)-1
+                for i in range(length):
+                        temp=xor(temp,int(error_object[i]))
+                if xor(temp,int(error_object[-1]))==1:
+                        return True
+                else:
+                        return False
+        except:
+                print("Error In Detectting Odd Parity")
+                return None
         
 def repeat_gen(error_object):
         '''
 repeat_gen(error_object) -> String
 '''
+        try:
+                return error_object.str*error_object.flag
+        except:
+                print("Error In repeat Generation")
+                return None
 
-        return error_object.str*error_object.flag
 def repeat_det(error_object):
         '''
 repeat_det(error_object) -> Boolean
 '''
-        temp=None
-        length=len(error_object)
-        repeat_number=int(error_object.flag)
-        message_length=length//repeat_number
-        original_message=error_object[0:message_length]
-        for i in range(repeat_number):
-                temp=error_object[i*message_length:(i+1)*message_length]
-                if temp!=original_message:
-                        return False
-        return True
+        try:
+                temp=None
+                length=len(error_object)
+                repeat_number=int(error_object.flag)
+                message_length=length//repeat_number
+                original_message=error_object[0:message_length]
+                for i in range(repeat_number):
+                        temp=error_object[i*message_length:(i+1)*message_length]
+                        if temp!=original_message:
+                                return False
+                return True
+        except:
+                print("Error In Repeat Detection")
+                return None
 def hamming_gen(error_object):
         '''
 hamming_gen(error_object) -> String
