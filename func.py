@@ -12,6 +12,18 @@ def hex_2_bin(hex_input):
         except:
                 print("Something Wrong")
                 return None
+def bin_2_dec(bin_input):
+        try:
+                s=0
+                input_val=bin_input.reverse()
+                for i in range(len(bin_input)):
+                        s=s+(2**i)*int(bin_input[i])
+                return s
+        except:
+                print("Something Wrong")
+                return None
+                
+                        
 
 # Error Check And Correction Functions In Python
 def parity_even_gen(error_object):
@@ -100,10 +112,79 @@ repeat_det(error_object) -> Boolean
                 return None
 
 def hamming_gen(error_object):
-        pass
-
+        length=len(error_object)
+        parity_number=int(log(length,2))+1
+        parity_index=[]
+        message=[]
+        p1=[0,2,4,6,8,10,12,14,16,18]
+        p2=[1,2,5,6,8,9,13,14,17,18]
+        p4=[3,4,5,6,11,12,13,14,19]
+        p8=[7,8,9,10,11,12,13,14]
+        p16=[15,16,17,18,19]
+        k=0
+        parity_number_index=1
+        for i in range(length):
+                if int(2**i)<=length and parity_number_index<=parity_number:
+                        parity_index.append(int(2**i)-1)
+                        parity_number_index=parity_number_index+1
+        for i in range(length+len(parity_index)):
+                if i in parity_index:
+                        message.append("0")
+                else:
+                        message.append(error_object[k])
+                        k=k+1
+        for i in range(length+len(parity_index)):
+                if i in p1:
+                        message[0]=str(xor(int(message[0]),int(message[i])))
+                if i in p2:
+                        message[1]=str(xor(int(message[1]),int(message[i])))
+                if i in p4:
+                        message[3]=str(xor(int(message[3]),int(message[i])))
+                if i in p8:
+                        message[7]=str(xor(int(message[7]),int(message[i])))
+                if i in p16:
+                        message[15]=str(xor(int(message[15]),int(message[i])))
+        result="".join(message)
+        return result
+                      
 def hamming_det(error_object):
-        pass
+        length=len(error_object)
+        parity_index=[]
+        message=list(error_object)
+        parity_value=[]
+        p1=[2,4,6,8,10,12,14,16,18]
+        p2=[2,5,6,8,9,13,14,17,18]
+        p4=[4,5,6,11,12,13,14,19]
+        p8=[8,9,10,11,12,13,14]
+        p16=[16,17,18,19]
+        for i in range(length):
+                if int(2**i)<=length:
+                        parity_index.append(int(2**i)-1)
+                else:
+                        break
+        for i in range(length):
+                if i in parity_index:
+                        parity_value.append(error_object[i])
+
+        for i in range(length):
+                if i in p1:
+                        parity_value[0]=str(xor(int(parity_value[0]),int(message[i])))
+                if i in p2:
+                        parity_value[1]=str(xor(int(parity_value[1]),int(message[i])))
+                if i in p4:
+                        parity_value[2]=str(xor(int(parity_value[2]),int(message[i])))
+                if i in p8:
+                        parity_value[3]=str(xor(int(parity_value[3]),int(message[i])))
+                if i in p16:
+                        parity_value[4]=str(xor(int(parity_value[4]),int(message[i])))
+                
+        if bin_2_dec(parity_value)==0:
+                return True
+        else:
+                output="Error Bit Number : "+str(bin_2_dec(parity_value))
+                print(output)
+                return False 
+                
 def checksum_gen(error_object):
         length=len(error_object)
         temp=0
