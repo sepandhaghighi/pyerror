@@ -1,8 +1,12 @@
 from operator import *
 from math import*
+
 poly_vector=["1011","111010101","11000000000000101"]
 hex_dict={"0":0,"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"A":10,"B":11,"C":12,"D":13,"E":14,"F":15,'a':10,'b':11,'c':12,'d':13,'e':14,'f':15}
 def hex_2_bin(hex_input):
+        '''
+        hex_2_bin(str)-> str
+        '''
         try:
                 init_bin=[]
                 for i in hex_input:
@@ -13,6 +17,9 @@ def hex_2_bin(hex_input):
                 print("Something Wrong")
                 return None
 def bin_2_dec(bin_input):
+        '''
+        bin_2_dec(str)-> str
+        '''
         try:
                 s=0
                 input_val=bin_input.reverse()
@@ -26,10 +33,13 @@ def bin_2_dec(bin_input):
                         
 
 # Error Check And Correction Functions In Python
+
 def parity_even_gen(error_object):
         '''
-parity_gen(error_object)-> String
-'''
+        parity_even_gen(error_detect)-> str
+        '''
+        
+
         try:
                 temp=0
                 length=len(error_object)
@@ -40,10 +50,12 @@ parity_gen(error_object)-> String
         except:
                 print("Error In Generating Even Parity")
                 return None
+
+        
 def parity_even_det(error_object):
         '''
-parity_det(error_object)-> Boolean
-'''
+        parity_even_det(error_detect)-> Boolean
+        '''
         try:
                 temp=0
                 length=len(error_object)
@@ -56,19 +68,34 @@ parity_det(error_object)-> Boolean
         except:
                 print("Error In Detecting Even Parity")
                 return None
+
+
+
+
 def parity_odd_gen(error_object):
+        '''
+        parity_odd_gen(error_detect)-> str
+        '''
 
         try:
                 temp=0
                 length=len(error_object)
                 for i in range(length):
-                        temp=xor(int(error_object[i]),temp)
-                result=error_object.str+str(int(not(temp)))
+                        temp=xor(int(error_object[i]),temp) # Calc XOR Of Bits
+                result=error_object.str+str(int(not(temp))) #Convert To XNOR
                 return result
         except:
                 print("Error In Generating Odd parity")
                 return None
+
+
+
+
+        
 def parity_odd_det(error_object):
+        '''
+        parity_odd_det(error_detect)-> Boolean
+        '''
         try:
                 temp=0
                 length=len(error_object)-1
@@ -84,8 +111,8 @@ def parity_odd_det(error_object):
         
 def repeat_gen(error_object):
         '''
-repeat_gen(error_object) -> String
-'''
+        repeat_gen(error_object) -> String
+        '''
         try:
                 return error_object.str*error_object.flag
         except:
@@ -94,8 +121,8 @@ repeat_gen(error_object) -> String
 
 def repeat_det(error_object):
         '''
-repeat_det(error_object) -> Boolean
-'''
+        repeat_det(error_object) -> Boolean
+        '''
         try:
                 temp=None
                 length=len(error_object)
@@ -112,6 +139,9 @@ repeat_det(error_object) -> Boolean
                 return None
 
 def hamming_gen(error_object):
+        '''
+        hamming_gen(error_object) -> String
+        '''
         length=len(error_object)
         parity_number=int(log(length,2))+1
         parity_index=[]
@@ -148,6 +178,9 @@ def hamming_gen(error_object):
         return result
                       
 def hamming_det(error_object):
+        '''
+        hamming_det(error_object) -> Boolean
+        '''
         length=len(error_object)
         parity_index=[]
         message=list(error_object)
@@ -186,6 +219,9 @@ def hamming_det(error_object):
                 return False 
                 
 def checksum_gen(error_object):
+        '''
+        checksum_gen(error_object) -> String
+        '''
         length=len(error_object)
         temp=0
         for i in error_object.str:
@@ -196,6 +232,9 @@ def checksum_gen(error_object):
         return final_string
         
 def checksum_det(error_object):
+        '''
+        checksum_det(error_object) -> Boolean
+        '''
         checksum=error_object[-2:]
         temp=0
         for i in error_object.str[:-2]:
@@ -207,6 +246,9 @@ def checksum_det(error_object):
         else:
                 return False
 def crc_gen(error_object,poly):
+        '''
+        crc_gen(error_object , str) -> String
+        '''
         try:
                 divider_len=len(poly)
                 extra_bit_len=divider_len-1
@@ -234,6 +276,10 @@ def crc_gen(error_object,poly):
                 
         
 def crc_det(error_object):
+
+        '''
+        crc_det(error_object) -> Boolean
+        '''
         try:
                 divider_len=len(poly)
                 extra_bit_len=divider_len-1

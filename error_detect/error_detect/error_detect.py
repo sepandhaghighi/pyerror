@@ -16,6 +16,14 @@ def convert_gen(error_object):
         mode=checksum_gen(error_object)
     elif error_object.code=="CRC3":
         mode=crc_gen(error_object,poly_vector[0])
+    elif error_object.code=="CRC8":
+        mode=crc_gen(error_object,poly_vector[1])
+    elif error_object.code=="CRC16":
+        mode=crc_gen(error_object,poly_vector[2])
+    elif error_object.code=="CRC32":
+        mode=crc_gen(error_object,poly_vector[3])
+    
+        
     
     return error_detect(mode,error_object.code,error_object.flag)
     
@@ -35,7 +43,13 @@ def convert_det(error_object):
     elif error_object.code=="Checksum":
         result=checksum_det(error_object)
     elif error_object.code=="CRC3":
-        result=crc_det(error_object,poly_vec[0])
+        result=crc_det(error_object,poly_vector[0])
+    elif error_object.code=="CRC8":
+        result=crc_det(error_object,poly_vector[1])
+    elif error_object.code=="CRC16":
+        result=crc_det(error_object,poly_vector[2])
+    elif error_object.code=="CRC32":
+        result=crc_det(error_object,poly_vector[3])
     return result
         
         
@@ -86,6 +100,8 @@ class error_detect:
     def __str__(self):
 
         return ("Error_Object("+self.str+","+str(self.code)+","+str(self.flag)+")")
+    def __help__(self):
+        print("Test")
     def __repr__(self):
         return ("E_Object("+"Message: "+self.str+" ,"+"Method: "+str(self.code)+" ,"+"Flag: "+str(self.flag)+")") 
 
