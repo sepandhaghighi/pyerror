@@ -36,7 +36,7 @@ this version of library support this methods :
 
 ## Installation
 
-- [Download](https://github.com/sepandhaghighi/pyerror/archive/v1.0.zip) Pyerror
+- [Download](https://github.com/sepandhaghighi/pyerror/archive/v1.1.zip) Pyerror
 
 - Just Unzip It !
 
@@ -47,7 +47,9 @@ this version of library support this methods :
 - create an error detection object `object=pyerror.error_detect("Message String","Method",flag=2)`
 * method argument in this object is string
 
+
 - run generator algorithm on object `error_detect_object=pyerror.convert_gen(object)`
+- You can access modified string `error_detect_object.str`
 
 - run detection algorithm on object  `pyerror.convert_det(error_detect_object)`
 
