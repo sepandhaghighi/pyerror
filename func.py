@@ -1,4 +1,4 @@
-from operator import *
+from operator import xor
 from math import*
 
 poly_vector=["1011","111010101","11000000000000101","100000100110000010001110110110111"]
@@ -123,7 +123,7 @@ def parity_even_det(error_object):
                 temp=0   # Temp Variable (Default Zero For XOR)
                 length=len(new_str) # Length of Input String
                 for i in range(length-1):     # Loop For Calculate Of XOR Of All Bits - Last
-                    temp=xor(int(new_str[i]),temp) 
+                    temp=xor(int(new_str[i]),temp)
                 if xor(temp,int(new_str[-1]))==0: # Compare Loop result With last Bit And Return Boolean
                         return True
                 else:
@@ -169,7 +169,7 @@ def parity_odd_det(error_object):
         Default Input Format Is Binary
         '''
         try:
-                new_str=error_object.str  # Copy Error Object String In New String Variable 
+                new_str=error_object.str# Copy Error Object String In New String Variable
                 temp=0 # Temp Variable (Default Zero For XOR)
                 length=len(new_str)-1 # Length Of Input String -1 (To Ignore Last Bit)
                 for i in range(length): # Loop For Calculate XOR Of Bits
