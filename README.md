@@ -5,7 +5,6 @@ Error Detection Library In Python
 ----------
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sepandhaghighi/pyerror/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sepandhaghighi/pyerror/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/sepandhaghighi/pyerror/badges/build.png?b=master)](https://scrutinizer-ci.com/g/sepandhaghighi/pyerror/build-status/master)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/sepandhaghighi/pyerror/blob/master/LICENSE)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7e81f688404541099e0c9aba643c5b76)](https://www.codacy.com/app/sepand-haghighi/pyerror?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sepandhaghighi/pyerror&amp;utm_campaign=Badge_Grade)
 
 ----------
